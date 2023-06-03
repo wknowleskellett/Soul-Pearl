@@ -66,10 +66,10 @@ public class EssenceItem extends Item {
     public Text getName(ItemStack stack) {
         NbtCompound nbt = stack.getOrCreateNbt();
         if (nbt.contains(CAGED_NAME_KEY, NbtElement.STRING_TYPE)) {
-            return Text.translatable("item.together_pearl.essence.filled",
+            return Text.translatable(getTranslationKey()+".filled",
                 Text.Serializer.fromJson(nbt.getString(CAGED_NAME_KEY)).getString());
         }
-        return Text.translatable("item.together_pearl.essence.empty");
+        return Text.translatable(getTranslationKey());
     }
     
 }

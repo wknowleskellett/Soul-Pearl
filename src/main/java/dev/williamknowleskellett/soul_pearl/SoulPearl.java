@@ -42,11 +42,15 @@ public class SoulPearl implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		// LOGGER.info("Hello Fabric world!");
-
 		// Register the items
 		Registry.register(Registries.ITEM, SOUL_PEARL_ID, SOUL_PEARL_ITEM);
 		// ModelPredicateProviderRegistry.register(SOUL_PEARL_ITEM, new Identifier("caged"), (stack, world, entity, seed) -> SoulPearlItem.isSoul((ItemStack)stack) ? 1.0f : 0.0f);
 		Registry.register(Registries.ITEM, ESSENCE_ID, ESSENCE_ITEM);
+
+		LOGGER.info(ESSENCE_ITEM.getTranslationKey());
+		LOGGER.info(ESSENCE_ITEM.getTranslationKey());
+		LOGGER.info(ESSENCE_ITEM.getTranslationKey());
+		LOGGER.info(ESSENCE_ITEM.getTranslationKey());
+		LOGGER.info(ESSENCE_ITEM.getTranslationKey());
 	}
 }

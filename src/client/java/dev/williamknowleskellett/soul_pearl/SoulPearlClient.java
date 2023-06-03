@@ -1,11 +1,10 @@
-package dev.williamknowleskellett.together_pearl;
+package dev.williamknowleskellett.soul_pearl;
 
-import dev.williamknowleskellett.soul_pearl.SoulPearl;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 
-public class TogetherPearlClient implements ClientModInitializer {
+public class SoulPearlClient implements ClientModInitializer {
 	@Override
 
 	public void onInitializeClient() {

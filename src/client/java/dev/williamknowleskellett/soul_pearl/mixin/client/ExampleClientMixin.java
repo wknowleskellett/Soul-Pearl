@@ -1,4 +1,4 @@
-package dev.williamknowleskellett.together_pearl.mixin.client;
+package dev.williamknowleskellett.soul_pearl.mixin.client;
 
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
