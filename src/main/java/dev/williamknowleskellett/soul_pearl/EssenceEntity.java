@@ -45,31 +45,27 @@ public class EssenceEntity extends ThrownItemEntity {
         for (int i = 0; i < 32; ++i) {
             this.world.addParticle(ParticleTypes.PORTAL, this.getX(), this.getY() + this.random.nextDouble() * 2.0, this.getZ(), this.random.nextGaussian(), 0.0, this.random.nextGaussian());
         }
-        if (!this.world.isClient && !this.isRemoved()) {
-            ItemStack stack = this.getItem();
-            Entity entity = EssenceItem.getCagedEntity(this.world, stack);
-            if (entity instanceof ServerPlayerEntity) {
-                ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
-                if (serverPlayerEntity.networkHandler.isConnectionOpen() && serverPlayerEntity.world == this.world && !serverPlayerEntity.isSleeping()) {
-                    EndermiteEntity endermiteEntity;
-                    if (this.random.nextFloat() < 0.05f && this.world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) && (endermiteEntity = EntityType.ENDERMITE.create(this.world)) != null) {
-                        endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
-                        this.world.spawnEntity(endermiteEntity);
-                    }
-                    if (entity.hasVehicle()) {
-                        serverPlayerEntity.requestTeleportAndDismount(this.getX(), this.getY(), this.getZ());
-                    } else {
-                        entity.requestTeleport(this.getX(), this.getY(), this.getZ());
-                    }
-                    entity.onLanding();
-                    entity.damage(this.getDamageSources().fall(), 5.0f);
-                }
-            } else if (entity != null) {
-                entity.requestTeleport(this.getX(), this.getY(), this.getZ());
-                entity.onLanding();
-            }
-            this.discard();
+        ItemStack stack = this.getItem();
+        Entity entity = EssenceItem.getSoulEntity(this.world, stack);
+        if (this.world.isClient || this.isRemoved() || entity == null) return;
+        if (entity instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity)entity;
+            if (!serverPlayerEntity.networkHandler.isConnectionOpen() || serverPlayerEntity.world != this.world || serverPlayerEntity.isSleeping()) return;
         }
+        EndermiteEntity endermiteEntity;
+        if (this.random.nextFloat() < 0.05f && this.world.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) && (endermiteEntity = EntityType.ENDERMITE.create(this.world)) != null) {
+            endermiteEntity.refreshPositionAndAngles(entity.getX(), entity.getY(), entity.getZ(), entity.getYaw(), entity.getPitch());
+            this.world.spawnEntity(endermiteEntity);
+        }
+        if (entity.hasVehicle()) {
+            entity.requestTeleportAndDismount(this.getX(), this.getY(), this.getZ());
+        } else {
+            entity.requestTeleport(this.getX(), this.getY(), this.getZ());
+        }
+        entity.onLanding();
+        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 0.0f);
+        this.getOwner().damage(this.getDamageSources().fall(), 5.0f);
+        this.discard();
     }
 
     @Override

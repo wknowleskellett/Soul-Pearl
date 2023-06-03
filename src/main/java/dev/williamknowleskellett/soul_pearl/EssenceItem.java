@@ -55,7 +55,7 @@ public class EssenceItem extends Item {
     }
 
     @Nullable
-    public static Entity getCagedEntity(World world, ItemStack stack) {
+    public static Entity getSoulEntity(World world, ItemStack stack) {
         NbtCompound nbt = stack.getOrCreateNbt();
         if (nbt.containsUuid(CAGED_UUID_KEY) && world instanceof ServerWorld) {
             return ((ServerWorld)world).getEntity(nbt.getUuid(CAGED_UUID_KEY));

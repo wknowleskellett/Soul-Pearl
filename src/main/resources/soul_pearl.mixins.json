@@ -3,6 +3,7 @@
 	"package": "dev.williamknowleskellett.soul_pearl.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
+		"EntityMixin",
 		"MobEntityMixin",
 		"PlayerEntityMixin"
 	],

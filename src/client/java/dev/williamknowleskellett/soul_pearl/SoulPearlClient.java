@@ -8,6 +8,6 @@ public class SoulPearlClient implements ClientModInitializer {
 	@Override
 
 	public void onInitializeClient() {
-		EntityRendererRegistry.register(SoulPearl.ESSENCE_ENTITY_TYPE, (context) ->new FlyingItemEntityRenderer(context));
+		EntityRendererRegistry.register(SoulPearl.ESSENCE_ENTITY_TYPE, (context) ->new FlyingItemEntityRenderer<EssenceEntity>(context));
 	}
 }
