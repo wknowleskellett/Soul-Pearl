@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/generated",
     "textures": {
-      "layer0": "together_pearl:item/essence"
+      "layer0": "soul_pearl:item/soul_pearl"
     }
 }

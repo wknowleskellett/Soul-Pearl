@@ -1,4 +1,4 @@
-package dev.williamknowleskellett.together_pearl;
+package dev.williamknowleskellett.soul_pearl;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -25,12 +25,12 @@ public class EssenceEntity extends ThrownItemEntity {
 
     public EssenceEntity(World world, LivingEntity owner) {
         // super((EntityType<? extends ThrownItemEntity>)TogetherPearl., owner, world);
-        super((EntityType<? extends ThrownItemEntity>)Registries.ENTITY_TYPE.get(TogetherPearl.ESSENCE_ID), owner, world);
+        super((EntityType<? extends ThrownItemEntity>)Registries.ENTITY_TYPE.get(SoulPearl.ESSENCE_ID), owner, world);
     }
 
     @Override
     protected Item getDefaultItem() {
-        return TogetherPearl.ESSENCE_ITEM;
+        return SoulPearl.ESSENCE_ITEM;
     }
 
     @Override

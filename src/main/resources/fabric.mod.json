@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "together_pearl",
+	"id": "soul_pearl",
 	"version": "${version}",
-	"name": "Together Pearl",
+	"name": "Soul Pearl",
 	"description": "Teleport your friends!",
 	"authors": [
 		"William Knowles-Kellett"
@@ -12,20 +12,20 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/together_pearl/icon.png",
+	"icon": "assets/soul_pearl/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"dev.williamknowleskellett.together_pearl.TogetherPearl"
+			"dev.williamknowleskellett.soul_pearl.SoulPearl"
 		],
 		"client": [
-			"dev.williamknowleskellett.together_pearl.TogetherPearlClient"
+			"dev.williamknowleskellett.soul_pearl.SoulPearlClient"
 		]
 	},
 	"mixins": [
-		"together_pearl.mixins.json",
+		"soul_pearl.mixins.json",
 		{
-			"config": "together_pearl.client.mixins.json",
+			"config": "soul_pearl.client.mixins.json",
 			"environment": "client"
 		}
 	],

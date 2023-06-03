@@ -1,4 +1,4 @@
-package dev.williamknowleskellett.together_pearl;
+package dev.williamknowleskellett.soul_pearl;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -8,9 +8,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-public class CagedPearlItem extends Item {
+public class SoulPearlItem extends Item {
 
-    public CagedPearlItem(Settings settings) {
+    public SoulPearlItem(Settings settings) {
         super(settings);
     }
 

@@ -1,4 +1,4 @@
-package dev.williamknowleskellett.together_pearl;
+package dev.williamknowleskellett.soul_pearl;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.EntityType;
@@ -14,15 +14,15 @@ import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TogetherPearl implements ModInitializer {
+public class SoulPearl implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
-    public static final Logger LOGGER = LoggerFactory.getLogger("together_pearl");
-	public static final Item CAGED_PEARL_ITEM = new CagedPearlItem(new Item.Settings().maxCount(16));
-	public static final Identifier CAGED_PEARL_ID = new Identifier("together_pearl", "caged_pearl");
+    public static final Logger LOGGER = LoggerFactory.getLogger("soul_pearl");
+	public static final Item SOUL_PEARL_ITEM = new SoulPearlItem(new Item.Settings().maxCount(16));
+	public static final Identifier SOUL_PEARL_ID = new Identifier("soul_pearl", "soul_pearl");
 	public static final Item ESSENCE_ITEM = new EssenceItem(new Item.Settings().maxCount(1));
-	public static final Identifier ESSENCE_ID = new Identifier("together_pearl", "essence");
+	public static final Identifier ESSENCE_ID = new Identifier("soul_pearl", "essence");
 
 	// Register the item entity
 	public static final EntityType<EssenceEntity> ESSENCE_ENTITY_TYPE = Registry.register(
@@ -45,8 +45,8 @@ public class TogetherPearl implements ModInitializer {
 		// LOGGER.info("Hello Fabric world!");
 
 		// Register the items
-		Registry.register(Registries.ITEM, CAGED_PEARL_ID, CAGED_PEARL_ITEM);
-		// ModelPredicateProviderRegistry.register(CAGED_PEARL_ITEM, new Identifier("caged"), (stack, world, entity, seed) -> CagedPearlItem.isCaged((ItemStack)stack) ? 1.0f : 0.0f);
+		Registry.register(Registries.ITEM, SOUL_PEARL_ID, SOUL_PEARL_ITEM);
+		// ModelPredicateProviderRegistry.register(SOUL_PEARL_ITEM, new Identifier("caged"), (stack, world, entity, seed) -> SoulPearlItem.isSoul((ItemStack)stack) ? 1.0f : 0.0f);
 		Registry.register(Registries.ITEM, ESSENCE_ID, ESSENCE_ITEM);
 	}
 }

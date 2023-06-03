@@ -1,4 +1,4 @@
-package dev.williamknowleskellett.together_pearl;
+package dev.williamknowleskellett.soul_pearl;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -27,7 +27,7 @@ public class EssenceItem extends Item {
     }
 
     public static ItemStack cage(ItemStack stack, @Nullable LivingEntity entity) {
-        ItemStack essence = new ItemStack(TogetherPearl.ESSENCE_ITEM);
+        ItemStack essence = new ItemStack(SoulPearl.ESSENCE_ITEM);
         if (entity != null) {
             NbtCompound nbt = essence.getOrCreateNbt();
             nbt.putUuid(CAGED_UUID_KEY, entity.getUuid());
