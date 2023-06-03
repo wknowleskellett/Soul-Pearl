@@ -22,7 +22,7 @@ public class MobEntityMixin {
         method = "interactWithItem(Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/ActionResult;",
         cancellable = true,
         locals = LocalCapture.CAPTURE_FAILHARD)
-	private void init(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> info) {
+	private void tryCaptureSoul(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> info) {
         ItemStack itemStack = player.getStackInHand(hand);
         if (itemStack.isOf(SoulPearl.SOUL_PEARL_ITEM)) {
             ItemStack essence = EssenceItem.cage(itemStack, (MobEntity)(Object) this);
