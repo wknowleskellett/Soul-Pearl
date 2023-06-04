@@ -1,6 +1,8 @@
 package dev.williamknowleskellett.soul_pearl;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
@@ -24,7 +26,9 @@ import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Position;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
+import net.minecraft.world.GameRules.Category;
 
 import java.util.List;
 
@@ -52,6 +56,10 @@ public class SoulPearl implements ModInitializer {
 			}
 		}, SpawnGroup.MISC).setDimensions(0.25f, 0.25f).maxTrackingRange(4).trackingTickInterval(10).build(ESSENCE_ID.toString())
 	);
+
+	// Create and register a boolean game rule with the name "doPlayerEssence" which is false by default.
+	public static final GameRules.Key<GameRules.BooleanRule> DO_PLAYER_ESSENCE =
+	GameRuleRegistry.register("doPlayerEssence", Category.MOBS, GameRuleFactory.createBooleanRule(false));
 
 	@Override
 	public void onInitialize() {

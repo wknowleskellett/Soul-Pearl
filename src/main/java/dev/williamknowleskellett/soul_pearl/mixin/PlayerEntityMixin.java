@@ -28,7 +28,8 @@ public class PlayerEntityMixin {
                 if (!(you instanceof PlayerEntity)) return;
                 
                 if (itemStack.isOf(SoulPearl.SOUL_PEARL_ITEM)) {
-                        if (!me.getAbilities().creativeMode) {
+                        boolean doPlayerEssence = me.world.getGameRules().getBoolean(SoulPearl.DO_PLAYER_ESSENCE);
+                        if (!doPlayerEssence && !me.getAbilities().creativeMode) {
                                 info.setReturnValue(ActionResult.FAIL);
                                 return;
                         }
