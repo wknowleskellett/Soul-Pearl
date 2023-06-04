@@ -1,4 +1,4 @@
-# ![Essence Item animation](/src/main/resources/assets/together_pearl/essence.gif) Soul Pearl Mod ![Essence Item animation](/src/main/resources/assets/together_pearl/essence.gif)
+# ![Essence Item animation](/src/main/resources/assets/soul_pearl/essence.gif) Soul Pearl Mod ![Essence Item animation](/src/main/resources/assets/soul_pearl/essence.gif)
 
 
 
@@ -6,8 +6,8 @@
 
 Adds a Soul Pearl that can capture the essence of another mob and teleport it.
 
-![Soul Pearl Coal Recipe](/src/main/resources/assets/together_pearl/caged_pearl_recipe_coal.png)
-![Soul Pearl Coal Recipe](/src/main/resources/assets/together_pearl/caged_pearl_recipe_charcoal.png)
+![Soul Pearl Coal Recipe](/src/main/resources/assets/soul_pearl/soul_pearl_recipe_coal.png)
+![Soul Pearl Charcoal Recipe](/src/main/resources/assets/soul_pearl/soul_pearl_recipe_charcoal.png)
 
 Right click on a mob while holding a Soul Pearl to capture its Essence, then throw the Essence to teleport it.
 
