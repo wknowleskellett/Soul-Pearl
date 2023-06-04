@@ -1,14 +1,20 @@
 package dev.williamknowleskellett.soul_pearl;
 
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.EntityType.Builder;
 import net.minecraft.entity.EntityType.EntityFactory;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 
 import org.slf4j.Logger;
@@ -46,5 +52,13 @@ public class SoulPearl implements ModInitializer {
 		Registry.register(Registries.ITEM, SOUL_PEARL_ID, SOUL_PEARL_ITEM);
 		// ModelPredicateProviderRegistry.register(SOUL_PEARL_ITEM, new Identifier("caged"), (stack, world, entity, seed) -> SoulPearlItem.isSoul((ItemStack)stack) ? 1.0f : 0.0f);
 		Registry.register(Registries.ITEM, ESSENCE_ID, ESSENCE_ITEM);
+		
+        DispenserBlock.registerBehavior(ESSENCE_ITEM, new ProjectileDispenserBehavior(){
+
+            @Override
+            protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
+                return Util.make(new EssenceEntity(world, position.getX(), position.getY(), position.getZ()), entity -> entity.setItem(stack));
+            }
+        });
 	}
 }

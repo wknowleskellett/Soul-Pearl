@@ -10,7 +10,6 @@ import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.registry.Registries;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
@@ -20,12 +19,16 @@ import net.minecraft.world.World;
 
 public class EssenceEntity extends ThrownItemEntity {
     public EssenceEntity(EntityType<? extends EssenceEntity> entityType, World world) {
-        super((EntityType<? extends ThrownItemEntity>)entityType, world);
+        super(entityType, world);
     }
 
     public EssenceEntity(World world, LivingEntity owner) {
         // super((EntityType<? extends ThrownItemEntity>)TogetherPearl., owner, world);
-        super((EntityType<? extends ThrownItemEntity>)Registries.ENTITY_TYPE.get(SoulPearl.ESSENCE_ID), owner, world);
+        super(SoulPearl.ESSENCE_ENTITY_TYPE, owner, world);
+    }
+
+    public EssenceEntity(World world, double x, double y, double z) {
+        super(SoulPearl.ESSENCE_ENTITY_TYPE, x, y, z, world);
     }
 
     @Override
@@ -63,8 +66,11 @@ public class EssenceEntity extends ThrownItemEntity {
             entity.requestTeleport(this.getX(), this.getY(), this.getZ());
         }
         entity.onLanding();
+        Entity owner = this.getOwner();
         entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 0.0f);
-        this.getOwner().damage(this.getDamageSources().fall(), 5.0f);
+        if (owner != null) {
+            this.getOwner().damage(this.getDamageSources().fall(), 5.0f);
+        }
         this.discard();
     }
 
