@@ -29,6 +29,6 @@ public class SoulPearlItem extends Item {
         ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, user, essence);
         user.setStackInHand(hand, itemStack2);
         user.incrementStat(Stats.USED.getOrCreateStat(this));
-        return TypedActionResult.success(itemStack, world.isClient());
+        return TypedActionResult.success(itemStack2, world.isClient());
     }
 }
