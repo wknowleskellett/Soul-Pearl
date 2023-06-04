@@ -2,11 +2,17 @@ package dev.williamknowleskellett.soul_pearl;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
+import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
+import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.EntityType.Builder;
 import net.minecraft.entity.EntityType.EntityFactory;
+import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,8 +20,13 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPointer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +69,30 @@ public class SoulPearl implements ModInitializer {
             @Override
             protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
                 return Util.make(new EssenceEntity(world, position.getX(), position.getY(), position.getZ()), entity -> entity.setItem(stack));
+            }
+        });
+        DispenserBlock.registerBehavior(SOUL_PEARL_ITEM, new FallibleItemDispenserBehavior(){
+            private final ItemDispenserBehavior fallbackBehavior = new ItemDispenserBehavior();
+
+            @Override
+            public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+                BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+                List<LivingEntity> list = pointer.getWorld().getEntitiesByClass(LivingEntity.class, new Box(blockPos), entity -> {
+                    return entity instanceof MobEntity || entity instanceof PlayerEntity;
+                });
+				if (list.isEmpty()) {
+					return super.dispenseSilently(pointer, stack);
+				}
+
+				ItemStack essence = EssenceItem.cage(stack, (LivingEntity) list.get(0));
+				stack.decrement(1);
+				if (stack.isEmpty()) {
+					return essence;
+				}
+				if (((DispenserBlockEntity)pointer.getBlockEntity()).addToFirstFreeSlot(essence) < 0) {
+					this.fallbackBehavior.dispense(pointer, essence);
+				}
+				return stack;
             }
         });
 	}
