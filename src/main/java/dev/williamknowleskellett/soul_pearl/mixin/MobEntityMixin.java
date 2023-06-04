@@ -12,6 +12,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
+import net.minecraft.stat.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
@@ -28,6 +29,7 @@ public class MobEntityMixin {
             ItemStack essence = EssenceItem.cage(itemStack, (MobEntity)(Object) this);
             ItemStack itemStack2 = ItemUsage.exchangeStack(itemStack, player, essence);
             player.setStackInHand(hand, itemStack2);
+            player.incrementStat(Stats.USED.getOrCreateStat(SoulPearl.SOUL_PEARL_ITEM));
             info.setReturnValue(ActionResult.success(((MobEntity)(Object)this).world.isClient));
         }
 	}
