@@ -20,4 +20,4 @@ Use the releases pane on the right to download the appropriate `.jar` for your M
 
 ## License
 
-I haven't decided yet what license to use. Open an issue if you want to use this code other than to play Minecraft with it, and I'll pick an open source license.
+GNU GPLv2 license. That means you can make changes to this mod and redistribute it by itself or in a modpack, and that I'm not liable if this mod somehow causes you harm. It also means any mod or modpack you make using this code must also publish its source code, and give people the same right to edit and redistribute that I am giving you. 
